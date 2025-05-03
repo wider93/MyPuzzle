@@ -1,0 +1,58 @@
+name: CI
+
+# main 브랜치에 push 또는 PR이 열릴 때마다 동작
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    env:
+      # vcpkg가 이미 시스템에 설치되어 있으면 이 줄은 없어도 됩니다.
+      # VCPKG_ROOT: ${{ runner.workspace }}/vcpkg
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # (선택) vcpkg 자체를 레포에 포함했다면 여기를 켜고, 아니라면 생략
+      #- name: Bootstrap vcpkg
+      #  run: |
+      #    git clone https://github.com/microsoft/vcpkg.git "${{ env.VCPKG_ROOT }}"
+      #    .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Install dependencies with vcpkg
+        run: |
+          vcpkg install sdl2:x64-windows
+          vcpkg install gtest:x64-windows
+          vcpkg install benchmark:x64-windows
+
+      - name: Integrate vcpkg with MSBuild
+        run: vcpkg integrate install
+
+      - name: Build solution
+        run: msbuild MyPuzzle.sln /p:Configuration=Release /p:Platform=x64
+
+      - name: Run unit tests
+        working-directory: Puzzle.Tests\bin\Release
+        run: .\Puzzle.Tests.exe --gtest_output="xml;results.xml"
+
+      - name: Run benchmarks
+        working-directory: Puzzle.Benchmarks\bin\Release
+        run: .\Puzzle.Benchmarks.exe --benchmark_format=json --benchmark_out="benchmarks.json"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: Puzzle.Tests/bin/Release/results.xml
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v3
+        with:
+          name: benchmark-results
+          path: Puzzle.Benchmarks/bin/Release/benchmarks.json
