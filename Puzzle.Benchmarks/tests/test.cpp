@@ -1,12 +1,28 @@
 #include <benchmark/benchmark.h>
 
+int32_t f(int32_t n)
+{
+    int64_t j = 23;
+
+    for (int32_t i = 0; i < n; ++i)
+        j = (j + i) ^ i;
+
+    return n;
+}
 
 static void BM_SolvePuzzle(benchmark::State& state)
 {
-    int32_t n = state.range(0);
-    int64_t j = 0;
-    for (int32_t i = 0; i < n; ++i)
-        j += i;
+    int fx = 0;
+    int32_t n = (int32_t)state.range(0);
+    for (const auto& _ : state)
+    {
+        n += sizeof(_);
 
+        benchmark::DoNotOptimize(fx += f(n));
+    }
+    benchmark::DoNotOptimize(fx);
 }
-BENCHMARK(BM_SolvePuzzle)->Arg(9)->Arg(16);
+BENCHMARK(BM_SolvePuzzle)->Arg(9)->Arg(16000000);
+
+
+BENCHMARK_MAIN();
