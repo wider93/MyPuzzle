@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
     // 
     //app.loop();
 
-    fnPuzzleCore();
+    Xorshift rng;
 
     return 0;
 }
