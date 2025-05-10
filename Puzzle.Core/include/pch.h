@@ -1,10 +1,16 @@
 ﻿#ifndef PCH_H
 #define PCH_H
 
-// 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
 
-#include <vector>
+#include <array>
+#include <bit>
+#include <bitset>
+#include <deque>
+#include <fstream>
 #include <iostream>
+#include <string>
+#include <variant>
+#include <vector>
 
 #endif //PCH_H

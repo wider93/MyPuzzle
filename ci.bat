@@ -10,12 +10,12 @@ msbuild "%~dp0MyPuzzle.sln" /p:Configuration=Release /p:Platform=x64
 REM 4) 단위 테스트 실행
 echo.
 echo === Running Unit Tests ===
-"%~dp0Puzzle.Tests\bin\Release\Puzzle.Tests.exe" --gtest_output="xml;%~dp0TestResults.xml"
+"%~dp0x64\Release\Puzzle.Tests.exe" --gtest_output="json:%~dp0Tests.json"
 
 REM 5) 벤치마크 실행
 echo.
 echo === Running Benchmarks ===
-"%~dp0Puzzle.Benchmarks\bin\Release\Puzzle.Benchmarks.exe" --benchmark_format=json --benchmark_out="%~dp0Benchmarks.json"
+"%~dp0x64\Release\Puzzle.Benchmarks.exe" --benchmark_format=json --benchmark_out="%~dp0Benchmarks.json"
 
 echo.
 echo All done.

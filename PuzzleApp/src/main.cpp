@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
     // 
     //app.loop();
 
-    Xorshift rng;
+    XorshiftRng rng;
 
     return 0;
 }

@@ -35,21 +35,21 @@ jobs:
         run: msbuild MyPuzzle.sln /p:Configuration=Release /p:Platform=x64
 
       - name: Run unit tests
-        working-directory: Puzzle.Tests\bin\Release
-        run: .\Puzzle.Tests.exe --gtest_output="xml;results.xml"
+        working-directory: .
+        run: x64\Release\Puzzle.Tests.exe --gtest_output="xml;Tests.xml"
 
       - name: Run benchmarks
-        working-directory: Puzzle.Benchmarks\bin\Release
-        run: .\Puzzle.Benchmarks.exe --benchmark_format=json --benchmark_out="benchmarks.json"
+        working-directory: .
+        run: x64\Release\Puzzle.Benchmarks.exe --benchmark_format=json --benchmark_out="Benchmarks.json"
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: Puzzle.Tests/bin/Release/results.xml
+          path: Tests.xml
 
       - name: Upload benchmark results
         uses: actions/upload-artifact@v4
         with:
           name: benchmark-results
-          path: Puzzle.Benchmarks/bin/Release/benchmarks.json
+          path: Benchmarks.json
