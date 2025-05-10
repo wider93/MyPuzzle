@@ -30,13 +30,14 @@ jobs:
         run: |
           bootstrap-vcpkg.bat
           vcpkg install --triplet x64-windows
+          vcpkg integrate install
 
       - name: Save vcpkg_installed cache
         uses: actions/cache@v4
         with:
           path: vcpkg_installed
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}
-          save-on-error: true
+          save-always: true
           
       - uses: actions/cache@v4
         name: Cache build outputs
