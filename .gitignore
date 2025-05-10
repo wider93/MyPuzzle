@@ -5,6 +5,7 @@
 
 Benchmarks.json
 Tests.json
+vcpkg_installed
 
 # User-specific files
 *.rsuser
