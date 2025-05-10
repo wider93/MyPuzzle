@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "puzzlecore_pch.h"
 #include "Random.h"
 
 XorshiftRng::XorshiftRng(uint64_t seed) :state{ seed ? seed : 0x714ab9ba134ce } {

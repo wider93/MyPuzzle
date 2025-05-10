@@ -18,7 +18,7 @@
     <ClInclude Include="include\framework.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="include\pch.h">
+    <ClInclude Include="include\puzzlecore_pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Puzzle.Core.h">
@@ -38,7 +38,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\pch.cpp">
+    <ClCompile Include="src\puzzlecore_pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\Random.cpp">

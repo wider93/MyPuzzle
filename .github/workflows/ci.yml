@@ -25,6 +25,8 @@ jobs:
       - name: Install dependencies with vcpkg
         run: |
           vcpkg install sdl2:x64-windows
+          vcpkg install sdl2-ttf:x64-windows
+          vcpkg install sdl2-image:x64-windows
           vcpkg install gtest:x64-windows
           vcpkg install benchmark:x64-windows
 

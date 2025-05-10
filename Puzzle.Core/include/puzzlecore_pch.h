@@ -1,5 +1,5 @@
-﻿#ifndef PCH_H
-#define PCH_H
+﻿#ifndef PUZZLECORE_PCH_H
+#define PUZZLECORE_PCH_H
 
 #include "framework.h"
 
@@ -13,4 +13,4 @@
 #include <variant>
 #include <vector>
 
-#endif //PCH_H
+#endif //PUZZLECORE_PCH_H

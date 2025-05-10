@@ -1,7 +1,8 @@
 @echo off
 REM ─────────────────────────────────────────
 REM 1) vcpkg 경로 설정 (프로젝트 루트의 vcpkg 폴더)
-vcpkg install gtest:x64-windows benchmark:x64-windows sdl2:x64-windows
+vcpkg install gtest:x64-windows benchmark:x64-windows
+vcpkg sdl2:x64-windows sdl2-ttf:x64-windows sdl2-image:x64-windows
 vcpkg integrate install
 
 REM 3) 솔루션 빌드
