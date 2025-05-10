@@ -19,7 +19,7 @@ jobs:
         id: cache-vcpkg
         uses: actions/cache/restore@v4
         with:
-          path: 
+          path: |
             - vcpkg_installed
             - C:/vcpkg/installed
             - C:/vcpkg/downloads
@@ -40,7 +40,7 @@ jobs:
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: 
+          path: |
             - vcpkg_installed
             - C:/vcpkg/installed
             - C:/vcpkg/downloads
