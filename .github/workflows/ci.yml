@@ -19,7 +19,10 @@ jobs:
         id: cache-vcpkg
         uses: actions/cache/restore@v4
         with:
-          path: C:/vcpkg/installed
+          path: 
+            - vcpkg_installed
+            - C:/vcpkg/installed
+            - C:/vcpkg/downloads
           key: ${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}
           restore-keys: ${{ runner.os }}-vcpkg-
 
@@ -37,14 +40,11 @@ jobs:
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: vcpkg_installed
+          path: 
+            - vcpkg_installed
+            - C:/vcpkg/installed
+            - C:/vcpkg/downloads
           key: ${{ steps.cache-vcpkg.outputs.cache-primary-key }}
-          
-      - uses: actions/cache@v4
-        name: Cache build outputs
-        with:
-          path: x64/Release
-          key: ${{ runner.os }}-build-${{ hashFiles('**/*.cpp','**/*.h') }}
 
       - name: Build solution
         run: msbuild MyPuzzle.sln /p:Configuration=Release /p:Platform=x64
